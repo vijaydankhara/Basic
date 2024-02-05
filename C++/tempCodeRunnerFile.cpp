@@ -1,41 +1,36 @@
-// file managment
-
-
-#include<iostream>
-#include<fstream>
+// operator overloding in unary operator find to cone area 
+#include <iostream>
 using namespace std;
-
-int main()
+class cone
 {
-    char input[50];
-    ofstream os;
-    os.open("file3.txt");
+int radius, height ;
 
-   
-    cout << "Please enter your name :- " << endl;
-    cin.getline(input,100);
-    os << input << endl;
-
-
-    cout << "Pleas enter contacr number :- " <<endl;
-    cin >> input;
-    cin.ignore();
-    os << input << endl;
-
-    os.close();
-    // read file data
-
-    ifstream is;
-    string line;
-    is.open("file3.txt");
-
-    cout<<"Reading from a text file :- " << endl;
-    while (getline(is,line))
-    {
-        cout << line << endl;
-    }
-    is.close();
-    return 0;
-    
+public:
+void setdata(int ra , int hei)
+{
+    radius = ra;
+    height = hei;
 }
+cone operator++(int)
+{
+    cone vd;
+    vd.radius = radius++;
+    vd.height = height++;
+    return vd;
+}
+int getdata()
+{
+    return 3.14 * radius * radius * height / 3;
+}
+};
 
+int main ()
+{
+    cone cone1,cone2;
+
+    cone1.setdata(5,10);
+    cout << "cone 1 is :- " << cone1.getdata() << endl;
+
+    cone1++;
+    cout << "cone 2 is :- " << cone1.getdata() << endl;
+}
